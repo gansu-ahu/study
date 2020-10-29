@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-text指令</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2 v-text="message+'!'">你好</h2> 
+        <h2 v-text="info+'!'"></h2>
+        <h2>你好{{message+"!"}}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "初学者",
+                info:"前端"
+            }
+        })
+    </script>
+</body>
+
+</html>

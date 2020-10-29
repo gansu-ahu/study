@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue初学</title>
+
+</head>
+
+<body id="body">
+    <div id="app" class="app">
+        {{ message }}
+        <span>{{message}}</span>
+        <h2> {{ school.name }} {{school.mobile}}</h2>
+        <ul>
+            <li>{{campus[0]}}</li>
+            <li>{{campus[1]}}</li>
+            <li>{{campus[2]}}</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',   //# 是id选择器
+            //el:".app",   //. 是class选择器
+            //el:"div",    //标签选择器
+            //el:"#body",
+            data: {
+                message: 'Hello Vue!',
+                school:{
+                    name:"初学者",
+                    mobile:"400-800-8820"
+                },
+                campus:["北京校区","上海校区","安徽校区"]
+            }
+        })
+    </script>
+</body>
+
+</html>

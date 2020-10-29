@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>局部组件的创建</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        //局部入口组件的声明
+        var App = {
+            data() {
+                return {
+
+                }
+            },
+            methods:{
+                clickHandler(){
+                    console.log(this);
+                }
+            },
+            template: `
+                <div>
+                我是一个入口组件
+                 <button @click="clickHandler">按钮</button>
+                </div>
+            `
+        }
+        console.log(App);
+
+        var vm=new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            //挂载子组件
+            components: {
+                App
+            },
+            //父组件直接可以使用,标签使用
+            template: `
+            <App></App>            
+            `
+            //或者 <App />
+        })
+        console.log(vm);
+    </script>
+</body>
+
+</html>

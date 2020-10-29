@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过props往子组件通信</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script>
+        //创建全局组件,第一个参数是组建的名字，第二个参数是options
+
+        Vue.component("Child", {
+            template: `
+                <div>
+                    <p> 我是一个孩子组件   {{childData}} </p>
+                    <input type="text" v-model="childData" @input="changeValue(childData)" />
+                </div>
+            `,
+            props: ["childData"],
+            methods:{
+                changeValue(val){
+                    //自定义的事件一定通过this.$emit去触发
+                    //$emit(自定义的事件名，消息)
+                    this.$emit("childHandler",val)
+                }
+            }
+        })
+
+
+        //父===>子
+        //1.先在父组件中绑定自定义的属性  <Child：childData="msg" /> 
+        //2.在子组件中使用props接收父组件传递的数据    props:["childData"]
+        //3.可以在子组件中任意使用    <input type="text" v-model="childData" />   {{childData}}
+
+
+        //子===>父
+        //1.在父组件中绑定自定义的事件    @childHandler="childHandler"
+        //2.在子组件中触发原生的事件，在函数中使用$emit触发自定义的事件   childHandler
+
+        Vue.component("Parent", {
+            data() {
+                return {
+                    msg: "我是父组件的数据"
+                }
+            },
+            template: `
+                <div>
+                    <p> 我是一个父组件 </p>
+                    <Child :childData="msg" @childHandler="childHandler"/> 
+                </div>
+            `,
+            methods:{
+                childHandler(val){
+                    console.log(val);
+                }
+            }
+        })
+
+
+        //1.声子
+        var App = {
+            template: `
+                <div>
+                    <Parent />
+                </div>
+            `,
+            components: {
+
+            }
+        }
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                //2.挂子
+                App
+            },
+            //3.用子
+            template: `<App />`
+        })
+
+    </script>
+</body>
+
+</html>

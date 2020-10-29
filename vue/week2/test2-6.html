@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if指令</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="toggleisShow">切换显示</button>
+        <p v-if="isShow"> 新手</p>
+        <p v-show="isShow"> 新手 v-show修饰</p>
+        <h2 v-if="temperature>=35">热死了</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: false,
+                temperature:40
+            },
+            methods: {
+                toggleisShow: function () {
+                    this.isShow = !this.isShow
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
